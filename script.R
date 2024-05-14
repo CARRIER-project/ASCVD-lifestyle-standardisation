@@ -1383,18 +1383,6 @@ colnames(boot.no_diabetes.risk_ratio.smoking.fit_8.stacked) <- c("b",
                                                                  "boot.no_diabetes.risk_ratio.smoking.fit_8.stacked")
 boot.no_diabetes.risk_ratio.smoking.fit_8.stacked$b <- 1:n_b
 
-boot.no_diabetes.risk_ratio.smoking.fit_9.stacked <- as.data.frame(matrix(nrow = n_b,
-                                                                          ncol = 2))
-colnames(boot.no_diabetes.risk_ratio.smoking.fit_9.stacked) <- c("b",
-                                                                 "boot.no_diabetes.risk_ratio.smoking.fit_9.stacked")
-boot.no_diabetes.risk_ratio.smoking.fit_9.stacked$b <- 1:n_b
-
-boot.no_diabetes.risk_ratio.smoking.fit_10.stacked <- as.data.frame(matrix(nrow = n_b,
-                                                                           ncol = 2))
-colnames(boot.no_diabetes.risk_ratio.smoking.fit_10.stacked) <- c("b",
-                                                                  "boot.no_diabetes.risk_ratio.smoking.fit_10.stacked")
-boot.no_diabetes.risk_ratio.smoking.fit_10.stacked$b <- 1:n_b
-
 # Loop
 
 for (b in 1:n_b) {
