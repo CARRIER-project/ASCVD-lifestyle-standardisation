@@ -128,7 +128,7 @@ for (i in 1:n_imp) {
                                                                                            0) 
 }
 
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   print(paste("imputation", i))
   
   print(table(imp.no_diabetes.stacked[[i]]$pre_existing_ASCVD.yes_1, exclude = FALSE))
@@ -171,7 +171,7 @@ for (i in 1:n_imp) {
                                                                                         0) 
 }
 
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   print(paste("imputation", i))
   
   print(table(imp.diabetes.stacked[[i]]$pre_existing_ASCVD.yes_1, exclude = FALSE))
@@ -194,7 +194,7 @@ for (i in 1:n_imp){
 
 ## DAG ----
 
-dag <- dagitty("dag{
+dag <- dagitty("dag {
   sex.male_1 -> age.ord
   sex.male_1 -> SES.ord
   sex.male_1 -> pre_existing_ASCVD.yes_1
@@ -238,7 +238,7 @@ impliedConditionalIndependencies(dag)
 #### Point estimates ----
 
 no_diabetes.cond_ind.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   
   # Data 
   
@@ -350,28 +350,28 @@ for (i in 1:n_imp){
 }
 
 no_diabetes.cond_ind.1 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   no_diabetes.cond_ind.1 <- append(no_diabetes.cond_ind.1, no_diabetes.cond_ind.stacked[[i]][[1]][[1]])
 }
 mean.no_diabetes.cond_ind.1 <- mean(no_diabetes.cond_ind.1)
 mean.no_diabetes.cond_ind.1
 
 no_diabetes.cond_ind.2 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   no_diabetes.cond_ind.2 <- append(no_diabetes.cond_ind.2, no_diabetes.cond_ind.stacked[[i]][[1]][[2]])
 }
 mean.no_diabetes.cond_ind.2 <- mean(no_diabetes.cond_ind.2)
 mean.no_diabetes.cond_ind.2
 
 no_diabetes.cond_ind.3 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   no_diabetes.cond_ind.3 <- append(no_diabetes.cond_ind.3, no_diabetes.cond_ind.stacked[[i]][[1]][[3]])
 }
 mean.no_diabetes.cond_ind.3 <- mean(no_diabetes.cond_ind.3)
 mean.no_diabetes.cond_ind.3
 
 no_diabetes.cond_ind.4 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   no_diabetes.cond_ind.4 <- append(no_diabetes.cond_ind.4, no_diabetes.cond_ind.stacked[[i]][[1]][[4]])
 }
 mean.no_diabetes.cond_ind.4 <- mean(no_diabetes.cond_ind.4)
@@ -400,7 +400,7 @@ boot.mean.no_diabetes.cond_ind$b <- 1:n_b
 
 # Loop 
 
-for(b in 1:n_b) {
+for (b in 1:n_b) {
   boot.index <- sample(1:nrow(data.no_diabetes), size = nrow(data.no_diabetes), replace = TRUE)
   
   boot.data.no_diabetes <- data.no_diabetes[boot.index, ]
@@ -428,7 +428,7 @@ for(b in 1:n_b) {
   }
   
   boot.no_diabetes.cond_ind.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     
     # Data 
     
@@ -540,28 +540,28 @@ for(b in 1:n_b) {
   }
   
   boot.no_diabetes.cond_ind.1 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.no_diabetes.cond_ind.1 <- append(boot.no_diabetes.cond_ind.1, boot.no_diabetes.cond_ind.stacked[[i]][[1]][[1]])
   }
   boot.mean.no_diabetes.cond_ind.1 <- mean(boot.no_diabetes.cond_ind.1)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.1"] <- boot.mean.no_diabetes.cond_ind.1
   
   boot.no_diabetes.cond_ind.2 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.no_diabetes.cond_ind.2 <- append(boot.no_diabetes.cond_ind.2, boot.no_diabetes.cond_ind.stacked[[i]][[1]][[2]])
   }
   boot.mean.no_diabetes.cond_ind.2 <- mean(boot.no_diabetes.cond_ind.2)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.2"] <- boot.mean.no_diabetes.cond_ind.2
   
   boot.no_diabetes.cond_ind.3 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.no_diabetes.cond_ind.3 <- append(boot.no_diabetes.cond_ind.3, boot.no_diabetes.cond_ind.stacked[[i]][[1]][[3]])
   }
   boot.mean.no_diabetes.cond_ind.3 <- mean(boot.no_diabetes.cond_ind.3)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.3"] <- boot.mean.no_diabetes.cond_ind.3
   
   boot.no_diabetes.cond_ind.4 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.no_diabetes.cond_ind.4 <- append(boot.no_diabetes.cond_ind.4, boot.no_diabetes.cond_ind.stacked[[i]][[1]][[4]])
   }
   boot.mean.no_diabetes.cond_ind.4 <- mean(boot.no_diabetes.cond_ind.4)
@@ -570,7 +570,7 @@ for(b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.1.lb"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.1"], 0.025)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.1.ub"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.1"], 0.975)
 }
@@ -582,7 +582,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.no_diabetes.cond_ind$boot.mean.no_diabetes.cond_ind.1, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.2.lb"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.2"], 0.025)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.2.ub"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.2"], 0.975)
 }
@@ -594,7 +594,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.no_diabetes.cond_ind$boot.mean.no_diabetes.cond_ind.2, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.3.lb"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.3"], 0.025)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.3.ub"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.3"], 0.975)
 }
@@ -606,7 +606,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.no_diabetes.cond_ind$boot.mean.no_diabetes.cond_ind.3, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.4.lb"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.4"], 0.025)
   boot.mean.no_diabetes.cond_ind[b, "boot.mean.no_diabetes.cond_ind.4.ub"] <- quantile(boot.mean.no_diabetes.cond_ind[1:b, "boot.mean.no_diabetes.cond_ind.4"], 0.975)
 }
@@ -623,7 +623,7 @@ quantile(boot.mean.no_diabetes.cond_ind$boot.mean.no_diabetes.cond_ind.4, c(0.02
 #### Point estimates ----
 
 diabetes.cond_ind.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   
   # Data 
   
@@ -735,28 +735,28 @@ for (i in 1:n_imp){
 }
 
 diabetes.cond_ind.1 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   diabetes.cond_ind.1 <- append(diabetes.cond_ind.1, diabetes.cond_ind.stacked[[i]][[1]][[1]])
 }
 mean.diabetes.cond_ind.1 <- mean(diabetes.cond_ind.1)
 mean.diabetes.cond_ind.1
 
 diabetes.cond_ind.2 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   diabetes.cond_ind.2 <- append(diabetes.cond_ind.2, diabetes.cond_ind.stacked[[i]][[1]][[2]])
 }
 mean.diabetes.cond_ind.2 <- mean(diabetes.cond_ind.2)
 mean.diabetes.cond_ind.2
 
 diabetes.cond_ind.3 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   diabetes.cond_ind.3 <- append(diabetes.cond_ind.3, diabetes.cond_ind.stacked[[i]][[1]][[3]])
 }
 mean.diabetes.cond_ind.3 <- mean(diabetes.cond_ind.3)
 mean.diabetes.cond_ind.3
 
 diabetes.cond_ind.4 <- c()
-for(i in 1:n_imp) {
+for (i in 1:n_imp) {
   diabetes.cond_ind.4 <- append(diabetes.cond_ind.4, diabetes.cond_ind.stacked[[i]][[1]][[4]])
 }
 mean.diabetes.cond_ind.4 <- mean(diabetes.cond_ind.4)
@@ -785,7 +785,7 @@ boot.mean.diabetes.cond_ind$b <- 1:n_b
 
 # Loop 
 
-for(b in 1:n_b) {
+for (b in 1:n_b) {
   boot.index <- sample(1:nrow(data.diabetes), size = nrow(data.diabetes), replace = TRUE)
   
   boot.data.diabetes <- data.diabetes[boot.index, ]
@@ -813,7 +813,7 @@ for(b in 1:n_b) {
   }
   
   boot.diabetes.cond_ind.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     
     # Data 
     
@@ -925,28 +925,28 @@ for(b in 1:n_b) {
   }
   
   boot.diabetes.cond_ind.1 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.diabetes.cond_ind.1 <- append(boot.diabetes.cond_ind.1, boot.diabetes.cond_ind.stacked[[i]][[1]][[1]])
   }
   boot.mean.diabetes.cond_ind.1 <- mean(boot.diabetes.cond_ind.1)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.1"] <- boot.mean.diabetes.cond_ind.1
   
   boot.diabetes.cond_ind.2 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.diabetes.cond_ind.2 <- append(boot.diabetes.cond_ind.2, boot.diabetes.cond_ind.stacked[[i]][[1]][[2]])
   }
   boot.mean.diabetes.cond_ind.2 <- mean(boot.diabetes.cond_ind.2)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.2"] <- boot.mean.diabetes.cond_ind.2
   
   boot.diabetes.cond_ind.3 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.diabetes.cond_ind.3 <- append(boot.diabetes.cond_ind.3, boot.diabetes.cond_ind.stacked[[i]][[1]][[3]])
   }
   boot.mean.diabetes.cond_ind.3 <- mean(boot.diabetes.cond_ind.3)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.3"] <- boot.mean.diabetes.cond_ind.3
   
   boot.diabetes.cond_ind.4 <- c()
-  for(i in 1:n_imp) {
+  for (i in 1:n_imp) {
     boot.diabetes.cond_ind.4 <- append(boot.diabetes.cond_ind.4, boot.diabetes.cond_ind.stacked[[i]][[1]][[4]])
   }
   boot.mean.diabetes.cond_ind.4 <- mean(boot.diabetes.cond_ind.4)
@@ -955,7 +955,7 @@ for(b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.1.lb"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.1"], 0.025)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.1.ub"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.1"], 0.975)
 }
@@ -967,7 +967,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.diabetes.cond_ind$boot.mean.diabetes.cond_ind.1, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.2.lb"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.2"], 0.025)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.2.ub"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.2"], 0.975)
 }
@@ -979,7 +979,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.diabetes.cond_ind$boot.mean.diabetes.cond_ind.2, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.3.lb"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.3"], 0.025)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.3.ub"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.3"], 0.975)
 }
@@ -991,7 +991,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.mean.diabetes.cond_ind$boot.mean.diabetes.cond_ind.3, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.4.lb"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.4"], 0.025)
   boot.mean.diabetes.cond_ind[b, "boot.mean.diabetes.cond_ind.4.ub"] <- quantile(boot.mean.diabetes.cond_ind[1:b, "boot.mean.diabetes.cond_ind.4"], 0.975)
 }
@@ -1060,19 +1060,19 @@ adjustmentSets(dag,
 block_1 <- imp.no_diabetes.stacked
 
 block_2 <- imp.no_diabetes.stacked
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2[[i]][["smoking.current_1"]] <- 0
 }
 
 block_3 <- imp.no_diabetes.stacked
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3[[i]][["smoking.current_1"]] <- 1
 }
 
 # Step 2: outcome modelling 
 
 smoking.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1,
                                       data = block_1[[i]],
@@ -1080,7 +1080,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -1090,7 +1090,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                       smoking.current_1 +
                                       sex.male_1 +
@@ -1102,7 +1102,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -1118,7 +1118,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -1132,7 +1132,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -1152,7 +1152,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                       smoking.current_1 +
                                       sex.male_1 +
@@ -1165,7 +1165,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                        smoking.current_1 +
                                        sex.male_1 +
@@ -1186,112 +1186,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.smoking.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(smoking.fit_1.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(smoking.fit_2.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(smoking.fit_3.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(smoking.fit_4.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(smoking.fit_5.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(smoking.fit_6.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(smoking.fit_7.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(smoking.fit_8.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(smoking.fit_1.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(smoking.fit_2.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(smoking.fit_3.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(smoking.fit_4.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(smoking.fit_5.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(smoking.fit_6.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(smoking.fit_7.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(smoking.fit_8.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
@@ -1420,19 +1420,19 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.no_diabetes.stacked
   
   boot.block_2 <- boot.imp.no_diabetes.stacked
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2[[i]][["smoking.current_1"]] <- 0
   }
   
   boot.block_3 <- boot.imp.no_diabetes.stacked
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3[[i]][["smoking.current_1"]] <- 1
   }
   
   # Step 2: outcome modelling
   
   boot.smoking.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1,
                                              data = boot.block_1[[i]],
@@ -1440,7 +1440,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -1450,7 +1450,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -1462,7 +1462,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -1478,7 +1478,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -1492,7 +1492,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -1512,7 +1512,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                              smoking.current_1 +
                                              sex.male_1 +
@@ -1525,7 +1525,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                               smoking.current_1 +
                                               sex.male_1 +
@@ -1546,112 +1546,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.smoking.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(boot.smoking.fit_1.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(boot.smoking.fit_2.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(boot.smoking.fit_3.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(boot.smoking.fit_4.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(boot.smoking.fit_5.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(boot.smoking.fit_6.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(boot.smoking.fit_7.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(boot.smoking.fit_8.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(boot.smoking.fit_1.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(boot.smoking.fit_2.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(boot.smoking.fit_3.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(boot.smoking.fit_4.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(boot.smoking.fit_5.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(boot.smoking.fit_6.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(boot.smoking.fit_7.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(boot.smoking.fit_8.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
@@ -1678,7 +1678,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_1.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_1.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_1.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_1.stacked"], 0.975)
 }
@@ -1694,7 +1694,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_1.stacked$boot.no_diabetes.risk_ratio.smoking.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_2.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_2.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_2.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_2.stacked"], 0.975)
 }
@@ -1710,7 +1710,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_2.stacked$boot.no_diabetes.risk_ratio.smoking.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_3.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_3.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_3.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_3.stacked"], 0.975)
 }
@@ -1726,7 +1726,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_3.stacked$boot.no_diabetes.risk_ratio.smoking.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_4.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_4.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_4.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_4.stacked"], 0.975)
 }
@@ -1742,7 +1742,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_4.stacked$boot.no_diabetes.risk_ratio.smoking.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_5.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_5.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_5.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_5.stacked"], 0.975)
 }
@@ -1758,7 +1758,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_5.stacked$boot.no_diabetes.risk_ratio.smoking.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_6.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_6.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_6.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_6.stacked"], 0.975)
 }
@@ -1774,7 +1774,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_6.stacked$boot.no_diabetes.risk_ratio.smoking.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_7.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_7.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_7.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_7.stacked"], 0.975)
 }
@@ -1790,7 +1790,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.smoking.fit_7.stacked$boot.no_diabetes.risk_ratio.smoking.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.smoking.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_8.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_8.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.smoking.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.smoking.fit_8.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.smoking.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.smoking.fit_8.stacked"], 0.975)
 }
@@ -1815,8 +1815,8 @@ quantile(boot.no_diabetes.risk_ratio.smoking.fit_8.stacked$boot.no_diabetes.risk
 block_1 <- imp.no_diabetes.stacked
 
 block_2 <- imp.no_diabetes.stacked
-for(i in 1:n_imp){
-  for(j in 1:nrow(data.no_diabetes)) {
+for (i in 1:n_imp) {
+  for (j in 1:nrow(data.no_diabetes)) {
     block_2[[i]][["MVPA"]][[j]] <- block_2[[i]][["MVPA"]][[j]] + sd(block_2[[i]][["MVPA"]])
   }
 }
@@ -1826,7 +1826,7 @@ block_3 <- imp.no_diabetes.stacked
 # Step 2: outcome modelling 
 
 MVPA.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      MVPA,
                                    data = block_1[[i]],
@@ -1834,7 +1834,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      MVPA +
                                      sex.male_1 +
@@ -1844,7 +1844,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         MVPA +
                                         sex.male_1 +
@@ -1856,7 +1856,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      rcs(MVPA, 3) +
                                      sex.male_1 +
@@ -1872,7 +1872,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                      MVPA +
                                      sex.male_1 +
@@ -1886,7 +1886,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                      rcs(MVPA, 3) +
                                      sex.male_1 +
@@ -1906,7 +1906,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                       MVPA +
                                       sex.male_1 +
@@ -1919,7 +1919,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                     rcs(MVPA, 3) +
                                     sex.male_1 +
@@ -1940,112 +1940,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.MVPA.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(MVPA.fit_1.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(MVPA.fit_2.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(MVPA.fit_3.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(MVPA.fit_4.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(MVPA.fit_5.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(MVPA.fit_6.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(MVPA.fit_7.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(MVPA.fit_8.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(MVPA.fit_1.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(MVPA.fit_2.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(MVPA.fit_3.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(MVPA.fit_4.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(MVPA.fit_5.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(MVPA.fit_6.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(MVPA.fit_7.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(MVPA.fit_8.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
@@ -2174,8 +2174,8 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.no_diabetes.stacked
   
   boot.block_2 <- boot.imp.no_diabetes.stacked
-  for(i in 1:n_imp){
-    for(j in 1:nrow(data.no_diabetes)) {
+  for (i in 1:n_imp) {
+    for (j in 1:nrow(data.no_diabetes)) {
       boot.block_2[[i]][["MVPA"]][[j]] <- boot.block_2[[i]][["MVPA"]][[j]] + sd(boot.block_2[[i]][["MVPA"]])
     }
   }
@@ -2185,7 +2185,7 @@ for (b in 1:n_b) {
   # Step 2: outcome modelling
   
   boot.MVPA.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             MVPA,
                                           data = boot.block_1[[i]],
@@ -2193,7 +2193,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                MVPA +
                                                sex.male_1 +
@@ -2203,7 +2203,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                MVPA +
                                                sex.male_1 +
@@ -2215,7 +2215,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             rcs(MVPA, 3) +
                                             sex.male_1 +
@@ -2231,7 +2231,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                           MVPA +
                                           sex.male_1 +
@@ -2245,7 +2245,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_6.stacked[[i]] <-  coxph(Surv(time, ASCVD_composite_event) ~
                                              rcs(MVPA, 3) +
                                              sex.male_1 +
@@ -2265,7 +2265,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                              MVPA +
                                              sex.male_1 +
@@ -2278,7 +2278,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                            rcs(MVPA, 3) +
                                            sex.male_1 +
@@ -2299,112 +2299,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.MVPA.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(boot.MVPA.fit_1.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(boot.MVPA.fit_2.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(boot.MVPA.fit_3.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(boot.MVPA.fit_4.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(boot.MVPA.fit_5.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(boot.MVPA.fit_6.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(boot.MVPA.fit_7.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(boot.MVPA.fit_8.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(boot.MVPA.fit_1.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(boot.MVPA.fit_2.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(boot.MVPA.fit_3.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(boot.MVPA.fit_4.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(boot.MVPA.fit_5.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(boot.MVPA.fit_6.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(boot.MVPA.fit_7.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(boot.MVPA.fit_8.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
@@ -2431,7 +2431,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked"], 0.975)
 }
@@ -2447,7 +2447,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked"], 0.975)
 }
@@ -2463,7 +2463,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked"], 0.975)
 }
@@ -2479,7 +2479,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked"], 0.975)
 }
@@ -2495,7 +2495,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked"], 0.975)
 }
@@ -2511,7 +2511,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked"], 0.975)
 }
@@ -2527,7 +2527,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked"], 0.975)
 }
@@ -2543,7 +2543,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked$boot.no_diabetes.risk_ratio.MVPA.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked"], 0.975)
 }
@@ -2568,8 +2568,8 @@ quantile(boot.no_diabetes.risk_ratio.MVPA.fit_8.stacked$boot.no_diabetes.risk_ra
 block_1 <- imp.no_diabetes.stacked
 
 block_2 <- imp.no_diabetes.stacked
-for(i in 1:n_imp){
-  for(j in 1:nrow(data.no_diabetes)) {
+for (i in 1:n_imp) {
+  for (j in 1:nrow(data.no_diabetes)) {
     block_2[[i]][["DHD"]][[j]] <- block_2[[i]][["DHD"]][[j]] + sd(block_2[[i]][["DHD"]])
   }
 }
@@ -2579,7 +2579,7 @@ block_3 <- imp.no_diabetes.stacked
 # Step 2: outcome modelling 
 
 DHD.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      DHD,
                                    data = block_1[[i]],
@@ -2587,7 +2587,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      DHD +
                                      sex.male_1 +
@@ -2597,7 +2597,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      DHD +
                                      sex.male_1 +
@@ -2609,7 +2609,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                     rcs(DHD, 3) +
                                     sex.male_1 +
@@ -2625,7 +2625,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                      DHD +
                                      sex.male_1 +
@@ -2639,7 +2639,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                     rcs(DHD, 3) +
                                     sex.male_1 +
@@ -2659,7 +2659,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                    DHD +
                                    sex.male_1 +
@@ -2672,7 +2672,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                    rcs(DHD, 3) +
                                    sex.male_1 +
@@ -2693,112 +2693,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.DHD.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(DHD.fit_1.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(DHD.fit_2.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(DHD.fit_3.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(DHD.fit_4.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(DHD.fit_5.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(DHD.fit_6.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(DHD.fit_7.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(DHD.fit_8.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(DHD.fit_1.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(DHD.fit_2.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(DHD.fit_3.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(DHD.fit_4.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(DHD.fit_5.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(DHD.fit_6.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(DHD.fit_7.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(DHD.fit_8.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
@@ -2927,8 +2927,8 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.no_diabetes.stacked
   
   boot.block_2 <- boot.imp.no_diabetes.stacked
-  for(i in 1:n_imp){
-    for(j in 1:nrow(data.no_diabetes)) {
+  for (i in 1:n_imp) {
+    for (j in 1:nrow(data.no_diabetes)) {
       boot.block_2[[i]][["DHD"]][[j]] <- boot.block_2[[i]][["DHD"]][[j]] + sd(boot.block_2[[i]][["DHD"]])
     }
   }
@@ -2938,7 +2938,7 @@ for (b in 1:n_b) {
   # Step 2: outcome modelling
   
   boot.DHD.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             DHD,
                                           data = boot.block_1[[i]],
@@ -2946,7 +2946,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             DHD +
                                             sex.male_1 +
@@ -2956,7 +2956,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             DHD +
                                             sex.male_1 +
@@ -2968,7 +2968,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                            rcs(DHD, 3) +
                                            sex.male_1 +
@@ -2984,7 +2984,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                             DHD +
                                             sex.male_1 +
@@ -2998,7 +2998,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_6.stacked[[i]] <-  coxph(Surv(time, ASCVD_composite_event) ~
                                             rcs(DHD, 3) +
                                             sex.male_1 +
@@ -3018,7 +3018,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                           DHD +
                                           sex.male_1 +
@@ -3031,7 +3031,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                           rcs(DHD, 3) +
                                           sex.male_1 +
@@ -3052,112 +3052,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.DHD.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(boot.DHD.fit_1.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(boot.DHD.fit_2.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(boot.DHD.fit_3.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(boot.DHD.fit_4.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(boot.DHD.fit_5.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(boot.DHD.fit_6.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(boot.DHD.fit_7.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(boot.DHD.fit_8.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(boot.DHD.fit_1.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(boot.DHD.fit_2.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(boot.DHD.fit_3.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(boot.DHD.fit_4.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(boot.DHD.fit_5.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(boot.DHD.fit_6.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(boot.DHD.fit_7.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(boot.DHD.fit_8.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
@@ -3184,7 +3184,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_1.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_1.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_1.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_1.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_1.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_1.stacked"], 0.975)
 }
@@ -3200,7 +3200,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_1.stacked$boot.no_diabetes.risk_ratio.DHD.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_2.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_2.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_2.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_2.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_2.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_2.stacked"], 0.975)
 }
@@ -3216,7 +3216,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_2.stacked$boot.no_diabetes.risk_ratio.DHD.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_3.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_3.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_3.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_3.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_3.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_3.stacked"], 0.975)
 }
@@ -3232,7 +3232,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_3.stacked$boot.no_diabetes.risk_ratio.DHD.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_4.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_4.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_4.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_4.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_4.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_4.stacked"], 0.975)
 }
@@ -3248,7 +3248,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_4.stacked$boot.no_diabetes.risk_ratio.DHD.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_5.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_5.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_5.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_5.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_5.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_5.stacked"], 0.975)
 }
@@ -3264,7 +3264,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_5.stacked$boot.no_diabetes.risk_ratio.DHD.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_6.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_6.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_6.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_6.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_6.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_6.stacked"], 0.975)
 }
@@ -3280,7 +3280,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_6.stacked$boot.no_diabetes.risk_ratio.DHD.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_7.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_7.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_7.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_7.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_7.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_7.stacked"], 0.975)
 }
@@ -3296,7 +3296,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.no_diabetes.risk_ratio.DHD.fit_7.stacked$boot.no_diabetes.risk_ratio.DHD.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.no_diabetes.risk_ratio.DHD.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_8.stacked.lb"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_8.stacked"], 0.025)
   boot.no_diabetes.risk_ratio.DHD.fit_8.stacked[b, "boot.no_diabetes.risk_ratio.DHD.fit_8.stacked.ub"] <- quantile(boot.no_diabetes.risk_ratio.DHD.fit_8.stacked[1:b, "boot.no_diabetes.risk_ratio.DHD.fit_8.stacked"], 0.975)
 }
@@ -3323,19 +3323,19 @@ quantile(boot.no_diabetes.risk_ratio.DHD.fit_8.stacked$boot.no_diabetes.risk_rat
 block_1 <- imp.diabetes.stacked
 
 block_2 <- imp.diabetes.stacked
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2[[i]][["smoking.current_1"]] <- 0
 }
 
 block_3 <- imp.diabetes.stacked
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3[[i]][["smoking.current_1"]] <- 1
 }
 
 # Step 2: outcome modelling 
 
 smoking.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1,
                                       data = block_1[[i]],
@@ -3343,7 +3343,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -3353,7 +3353,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -3365,7 +3365,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -3381,7 +3381,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -3395,7 +3395,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                         smoking.current_1 +
                                         sex.male_1 +
@@ -3415,7 +3415,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                       smoking.current_1 +
                                       sex.male_1 +
@@ -3428,7 +3428,7 @@ for(i in 1:n_imp){
 }
 
 smoking.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   smoking.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                        smoking.current_1 +
                                        sex.male_1 +
@@ -3449,112 +3449,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.smoking.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(smoking.fit_1.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(smoking.fit_2.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(smoking.fit_3.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(smoking.fit_4.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(smoking.fit_5.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(smoking.fit_6.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(smoking.fit_7.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_2.pred_risk.smoking.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(smoking.fit_8.stacked[[i]], 
                                                               block_2[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(smoking.fit_1.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(smoking.fit_2.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(smoking.fit_3.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(smoking.fit_4.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(smoking.fit_5.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(smoking.fit_6.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(smoking.fit_7.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
 }
 
 block_3.pred_risk.smoking.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(smoking.fit_8.stacked[[i]], 
                                                               block_3[[i]], 
                                                               times = 5) 
@@ -3683,19 +3683,19 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.diabetes.stacked
   
   boot.block_2 <- boot.imp.diabetes.stacked
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2[[i]][["smoking.current_1"]] <- 0
   }
   
   boot.block_3 <- boot.imp.diabetes.stacked
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3[[i]][["smoking.current_1"]] <- 1
   }
   
   # Step 2: outcome modelling
   
   boot.smoking.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1,
                                              data = boot.block_1[[i]],
@@ -3703,7 +3703,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -3713,7 +3713,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -3725,7 +3725,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -3741,7 +3741,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -3755,7 +3755,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                                smoking.current_1 +
                                                sex.male_1 +
@@ -3775,7 +3775,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                              smoking.current_1 +
                                              sex.male_1 +
@@ -3788,7 +3788,7 @@ for (b in 1:n_b) {
   }
   
   boot.smoking.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.smoking.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                               smoking.current_1 +
                                               sex.male_1 +
@@ -3809,112 +3809,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.smoking.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(boot.smoking.fit_1.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(boot.smoking.fit_2.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(boot.smoking.fit_3.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(boot.smoking.fit_4.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(boot.smoking.fit_5.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(boot.smoking.fit_6.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(boot.smoking.fit_7.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_2.pred_risk.smoking.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(boot.smoking.fit_8.stacked[[i]], 
                                                                      boot.block_2[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_1.stacked[[i]] <- predictRisk(boot.smoking.fit_1.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_2.stacked[[i]] <- predictRisk(boot.smoking.fit_2.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_3.stacked[[i]] <- predictRisk(boot.smoking.fit_3.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_4.stacked[[i]] <- predictRisk(boot.smoking.fit_4.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_5.stacked[[i]] <- predictRisk(boot.smoking.fit_5.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_6.stacked[[i]] <- predictRisk(boot.smoking.fit_6.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_7.stacked[[i]] <- predictRisk(boot.smoking.fit_7.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
   }
   
   boot.block_3.pred_risk.smoking.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.smoking.fit_8.stacked[[i]] <- predictRisk(boot.smoking.fit_8.stacked[[i]], 
                                                                      boot.block_3[[i]], 
                                                                      times = 5) 
@@ -3941,7 +3941,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_1.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_1.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_1.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_1.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_1.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_1.stacked"], 0.975)
 }
@@ -3957,7 +3957,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_1.stacked$boot.diabetes.risk_ratio.smoking.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_2.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_2.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_2.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_2.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_2.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_2.stacked"], 0.975)
 }
@@ -3973,7 +3973,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_2.stacked$boot.diabetes.risk_ratio.smoking.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_3.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_3.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_3.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_3.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_3.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_3.stacked"], 0.975)
 }
@@ -3989,7 +3989,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_3.stacked$boot.diabetes.risk_ratio.smoking.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_4.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_4.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_4.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_4.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_4.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_4.stacked"], 0.975)
 }
@@ -4005,7 +4005,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_4.stacked$boot.diabetes.risk_ratio.smoking.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_5.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_5.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_5.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_5.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_5.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_5.stacked"], 0.975)
 }
@@ -4021,7 +4021,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_5.stacked$boot.diabetes.risk_ratio.smoking.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_6.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_6.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_6.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_6.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_6.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_6.stacked"], 0.975)
 }
@@ -4037,7 +4037,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_6.stacked$boot.diabetes.risk_ratio.smoking.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_7.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_7.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_7.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_7.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_7.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_7.stacked"], 0.975)
 }
@@ -4053,7 +4053,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.smoking.fit_7.stacked$boot.diabetes.risk_ratio.smoking.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.smoking.fit_8.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_8.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_8.stacked"], 0.025)
   boot.diabetes.risk_ratio.smoking.fit_8.stacked[b, "boot.diabetes.risk_ratio.smoking.fit_8.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.smoking.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.smoking.fit_8.stacked"], 0.975)
 }
@@ -4078,8 +4078,8 @@ quantile(boot.diabetes.risk_ratio.smoking.fit_8.stacked$boot.diabetes.risk_ratio
 block_1 <- imp.diabetes.stacked
 
 block_2 <- imp.diabetes.stacked
-for(i in 1:n_imp){
-  for(j in 1:nrow(data.diabetes)) {
+for (i in 1:n_imp) {
+  for (j in 1:nrow(data.diabetes)) {
     block_2[[i]][["MVPA"]][[j]] <- block_2[[i]][["MVPA"]][[j]] + sd(block_2[[i]][["MVPA"]])
   }
 }
@@ -4089,7 +4089,7 @@ block_3 <- imp.diabetes.stacked
 # Step 2: outcome modelling 
 
 MVPA.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      MVPA,
                                    data = block_1[[i]],
@@ -4097,7 +4097,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      MVPA +
                                      sex.male_1 +
@@ -4107,7 +4107,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      MVPA +
                                      sex.male_1 +
@@ -4119,7 +4119,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                      rcs(MVPA, 3) +
                                      sex.male_1 +
@@ -4135,7 +4135,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                      MVPA +
                                      sex.male_1 +
@@ -4149,7 +4149,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                      rcs(MVPA, 3) +
                                      sex.male_1 +
@@ -4169,7 +4169,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                    MVPA +
                                    sex.male_1 +
@@ -4182,7 +4182,7 @@ for(i in 1:n_imp){
 }
 
 MVPA.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   MVPA.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                     rcs(MVPA, 3) +
                                     sex.male_1 +
@@ -4203,112 +4203,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.MVPA.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(MVPA.fit_1.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(MVPA.fit_2.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(MVPA.fit_3.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(MVPA.fit_4.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(MVPA.fit_5.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(MVPA.fit_6.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(MVPA.fit_7.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_2.pred_risk.MVPA.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(MVPA.fit_8.stacked[[i]], 
                                                            block_2[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(MVPA.fit_1.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(MVPA.fit_2.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(MVPA.fit_3.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(MVPA.fit_4.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(MVPA.fit_5.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(MVPA.fit_6.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(MVPA.fit_7.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
 }
 
 block_3.pred_risk.MVPA.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(MVPA.fit_8.stacked[[i]], 
                                                            block_3[[i]], 
                                                            times = 5) 
@@ -4437,8 +4437,8 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.diabetes.stacked
   
   boot.block_2 <- boot.imp.diabetes.stacked
-  for(i in 1:n_imp){
-    for(j in 1:nrow(data.diabetes)) {
+  for (i in 1:n_imp) {
+    for (j in 1:nrow(data.diabetes)) {
       boot.block_2[[i]][["MVPA"]][[j]] <- boot.block_2[[i]][["MVPA"]][[j]] + sd(boot.block_2[[i]][["MVPA"]])
     }
   }
@@ -4448,7 +4448,7 @@ for (b in 1:n_b) {
   # Step 2: outcome modelling
   
   boot.MVPA.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             MVPA,
                                           data = boot.block_1[[i]],
@@ -4456,7 +4456,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             MVPA +
                                             sex.male_1 +
@@ -4466,7 +4466,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             MVPA +
                                             sex.male_1 +
@@ -4478,7 +4478,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                             rcs(MVPA, 3) +
                                             sex.male_1 +
@@ -4494,7 +4494,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                             MVPA +
                                             sex.male_1 +
@@ -4508,7 +4508,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_6.stacked[[i]] <-  coxph(Surv(time, ASCVD_composite_event) ~
                                              rcs(MVPA, 3) +
                                              sex.male_1 +
@@ -4528,7 +4528,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                           MVPA +
                                           sex.male_1 +
@@ -4541,7 +4541,7 @@ for (b in 1:n_b) {
   }
   
   boot.MVPA.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.MVPA.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                            rcs(MVPA, 3) +
                                            sex.male_1 +
@@ -4562,112 +4562,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.MVPA.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(boot.MVPA.fit_1.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(boot.MVPA.fit_2.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(boot.MVPA.fit_3.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(boot.MVPA.fit_4.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(boot.MVPA.fit_5.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(boot.MVPA.fit_6.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(boot.MVPA.fit_7.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_2.pred_risk.MVPA.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(boot.MVPA.fit_8.stacked[[i]], 
                                                                   boot.block_2[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_1.stacked[[i]] <- predictRisk(boot.MVPA.fit_1.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_2.stacked[[i]] <- predictRisk(boot.MVPA.fit_2.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_3.stacked[[i]] <- predictRisk(boot.MVPA.fit_3.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_4.stacked[[i]] <- predictRisk(boot.MVPA.fit_4.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_5.stacked[[i]] <- predictRisk(boot.MVPA.fit_5.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_6.stacked[[i]] <- predictRisk(boot.MVPA.fit_6.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_7.stacked[[i]] <- predictRisk(boot.MVPA.fit_7.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
   }
   
   boot.block_3.pred_risk.MVPA.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.MVPA.fit_8.stacked[[i]] <- predictRisk(boot.MVPA.fit_8.stacked[[i]], 
                                                                   boot.block_3[[i]], 
                                                                   times = 5) 
@@ -4694,7 +4694,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_1.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_1.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_1.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_1.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_1.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_1.stacked"], 0.975)
 }
@@ -4710,7 +4710,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_1.stacked$boot.diabetes.risk_ratio.MVPA.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_2.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_2.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_2.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_2.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_2.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_2.stacked"], 0.975)
 }
@@ -4726,7 +4726,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_2.stacked$boot.diabetes.risk_ratio.MVPA.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_3.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_3.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_3.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_3.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_3.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_3.stacked"], 0.975)
 }
@@ -4742,7 +4742,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_3.stacked$boot.diabetes.risk_ratio.MVPA.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_4.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_4.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_4.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_4.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_4.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_4.stacked"], 0.975)
 }
@@ -4758,7 +4758,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_4.stacked$boot.diabetes.risk_ratio.MVPA.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_5.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_5.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_5.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_5.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_5.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_5.stacked"], 0.975)
 }
@@ -4774,7 +4774,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_5.stacked$boot.diabetes.risk_ratio.MVPA.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_6.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_6.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_6.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_6.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_6.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_6.stacked"], 0.975)
 }
@@ -4790,7 +4790,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_6.stacked$boot.diabetes.risk_ratio.MVPA.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_7.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_7.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_7.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_7.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_7.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_7.stacked"], 0.975)
 }
@@ -4806,7 +4806,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.MVPA.fit_7.stacked$boot.diabetes.risk_ratio.MVPA.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.MVPA.fit_8.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_8.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_8.stacked"], 0.025)
   boot.diabetes.risk_ratio.MVPA.fit_8.stacked[b, "boot.diabetes.risk_ratio.MVPA.fit_8.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.MVPA.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.MVPA.fit_8.stacked"], 0.975)
 }
@@ -4831,8 +4831,8 @@ quantile(boot.diabetes.risk_ratio.MVPA.fit_8.stacked$boot.diabetes.risk_ratio.MV
 block_1 <- imp.diabetes.stacked
 
 block_2 <- imp.diabetes.stacked
-for(i in 1:n_imp){
-  for(j in 1:nrow(data.diabetes)) {
+for (i in 1:n_imp) {
+  for (j in 1:nrow(data.diabetes)) {
     block_2[[i]][["DHD"]][[j]] <- block_2[[i]][["DHD"]][[j]] + sd(block_2[[i]][["DHD"]])
   }
 }
@@ -4842,7 +4842,7 @@ block_3 <- imp.diabetes.stacked
 # Step 2: outcome modelling 
 
 DHD.fit_1.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                     DHD,
                                   data = block_1[[i]],
@@ -4850,7 +4850,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_2.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                     DHD +
                                     sex.male_1 +
@@ -4860,7 +4860,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_3.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                     DHD +
                                     sex.male_1 +
@@ -4872,7 +4872,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_4.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                     rcs(DHD, 3) +
                                     sex.male_1 +
@@ -4888,7 +4888,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_5.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                     DHD +
                                     sex.male_1 +
@@ -4902,7 +4902,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_6.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_6.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                     rcs(DHD, 3) +
                                     sex.male_1 +
@@ -4922,7 +4922,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_7.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                   DHD +
                                   sex.male_1 +
@@ -4935,7 +4935,7 @@ for(i in 1:n_imp){
 }
 
 DHD.fit_8.stacked <- list()
-for(i in 1:n_imp){
+for (i in 1:n_imp) {
   DHD.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                    rcs(DHD, 3) +
                                    sex.male_1 +
@@ -4956,112 +4956,112 @@ for(i in 1:n_imp){
 # Step 3: prediction 
 
 block_2.pred_risk.DHD.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(DHD.fit_1.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(DHD.fit_2.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(DHD.fit_3.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(DHD.fit_4.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(DHD.fit_5.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(DHD.fit_6.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(DHD.fit_7.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_2.pred_risk.DHD.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_2.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(DHD.fit_8.stacked[[i]], 
                                                           block_2[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_1.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(DHD.fit_1.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_2.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(DHD.fit_2.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_3.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(DHD.fit_3.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_4.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(DHD.fit_4.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_5.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(DHD.fit_5.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_6.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(DHD.fit_6.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_7.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(DHD.fit_7.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
 }
 
 block_3.pred_risk.DHD.fit_8.stacked <- list()
-for (i in 1:n_imp){
+for (i in 1:n_imp) {
   block_3.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(DHD.fit_8.stacked[[i]], 
                                                           block_3[[i]], 
                                                           times = 5) 
@@ -5190,8 +5190,8 @@ for (b in 1:n_b) {
   boot.block_1 <- boot.imp.diabetes.stacked
   
   boot.block_2 <- boot.imp.diabetes.stacked
-  for(i in 1:n_imp){
-    for(j in 1:nrow(data.diabetes)) {
+  for (i in 1:n_imp) {
+    for (j in 1:nrow(data.diabetes)) {
       boot.block_2[[i]][["DHD"]][[j]] <- boot.block_2[[i]][["DHD"]][[j]] + sd(boot.block_2[[i]][["DHD"]])
     }
   }
@@ -5201,7 +5201,7 @@ for (b in 1:n_b) {
   # Step 2: outcome modelling
   
   boot.DHD.fit_1.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_1.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                            DHD,
                                          data = boot.block_1[[i]],
@@ -5209,7 +5209,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_2.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_2.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                            DHD +
                                            sex.male_1 +
@@ -5219,7 +5219,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_3.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_3.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                            DHD +
                                            sex.male_1 +
@@ -5231,7 +5231,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_4.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_4.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~ 
                                            rcs(DHD, 3) +
                                            sex.male_1 +
@@ -5247,7 +5247,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_5.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_5.stacked[[i]] <- coxph(Surv(time, ASCVD_composite_event) ~
                                            DHD +
                                            sex.male_1 +
@@ -5261,7 +5261,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_6.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_6.stacked[[i]] <-  coxph(Surv(time, ASCVD_composite_event) ~
                                             rcs(DHD, 3) +
                                             sex.male_1 +
@@ -5281,7 +5281,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_7.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_7.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                          DHD +
                                          sex.male_1 +
@@ -5294,7 +5294,7 @@ for (b in 1:n_b) {
   }
   
   boot.DHD.fit_8.stacked <- list()
-  for(i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.DHD.fit_8.stacked[[i]] <- CSC(Hist(time, event) ~ 
                                           rcs(DHD, 3) +
                                           sex.male_1 +
@@ -5315,112 +5315,112 @@ for (b in 1:n_b) {
   # Step 3: prediction
   
   boot.block_2.pred_risk.DHD.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(boot.DHD.fit_1.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(boot.DHD.fit_2.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(boot.DHD.fit_3.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(boot.DHD.fit_4.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(boot.DHD.fit_5.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(boot.DHD.fit_6.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(boot.DHD.fit_7.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_2.pred_risk.DHD.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_2.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(boot.DHD.fit_8.stacked[[i]], 
                                                                  boot.block_2[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_1.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_1.stacked[[i]] <- predictRisk(boot.DHD.fit_1.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_2.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_2.stacked[[i]] <- predictRisk(boot.DHD.fit_2.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_3.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_3.stacked[[i]] <- predictRisk(boot.DHD.fit_3.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_4.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_4.stacked[[i]] <- predictRisk(boot.DHD.fit_4.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_5.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_5.stacked[[i]] <- predictRisk(boot.DHD.fit_5.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_6.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_6.stacked[[i]] <- predictRisk(boot.DHD.fit_6.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_7.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_7.stacked[[i]] <- predictRisk(boot.DHD.fit_7.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
   }
   
   boot.block_3.pred_risk.DHD.fit_8.stacked <- list()
-  for (i in 1:n_imp){
+  for (i in 1:n_imp) {
     boot.block_3.pred_risk.DHD.fit_8.stacked[[i]] <- predictRisk(boot.DHD.fit_8.stacked[[i]], 
                                                                  boot.block_3[[i]], 
                                                                  times = 5) 
@@ -5447,7 +5447,7 @@ for (b in 1:n_b) {
 
 # Output
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_1.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_1.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_1.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_1.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_1.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_1.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_1.stacked"], 0.975)
 }
@@ -5463,7 +5463,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_1.stacked$boot.diabetes.risk_ratio.DHD.fit_1.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_2.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_2.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_2.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_2.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_2.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_2.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_2.stacked"], 0.975)
 }
@@ -5479,7 +5479,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_2.stacked$boot.diabetes.risk_ratio.DHD.fit_2.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_3.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_3.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_3.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_3.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_3.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_3.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_3.stacked"], 0.975)
 }
@@ -5495,7 +5495,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_3.stacked$boot.diabetes.risk_ratio.DHD.fit_3.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_4.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_4.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_4.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_4.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_4.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_4.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_4.stacked"], 0.975)
 }
@@ -5511,7 +5511,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_4.stacked$boot.diabetes.risk_ratio.DHD.fit_4.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_5.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_5.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_5.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_5.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_5.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_5.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_5.stacked"], 0.975)
 }
@@ -5527,7 +5527,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_5.stacked$boot.diabetes.risk_ratio.DHD.fit_5.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_6.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_6.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_6.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_6.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_6.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_6.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_6.stacked"], 0.975)
 }
@@ -5543,7 +5543,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_6.stacked$boot.diabetes.risk_ratio.DHD.fit_6.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_7.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_7.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_7.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_7.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_7.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_7.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_7.stacked"], 0.975)
 }
@@ -5559,7 +5559,7 @@ ggplot() +
   theme_minimal()
 quantile(boot.diabetes.risk_ratio.DHD.fit_7.stacked$boot.diabetes.risk_ratio.DHD.fit_7.stacked, c(0.025, 0.975))
 
-for(b in 10:n_b) {
+for (b in 10:n_b) {
   boot.diabetes.risk_ratio.DHD.fit_8.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_8.stacked.lb"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_8.stacked"], 0.025)
   boot.diabetes.risk_ratio.DHD.fit_8.stacked[b, "boot.diabetes.risk_ratio.DHD.fit_8.stacked.ub"] <- quantile(boot.diabetes.risk_ratio.DHD.fit_8.stacked[1:b, "boot.diabetes.risk_ratio.DHD.fit_8.stacked"], 0.975)
 }
